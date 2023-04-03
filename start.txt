@@ -1,0 +1,10 @@
+dstore create t1
+
+active t1
+
+import ./test/data.ttl
+import ./test/t1.dlog
+
+set output out
+
+endpoint start

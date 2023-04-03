@@ -1,0 +1,27 @@
+PREFIX : <http://example.com/ex/>
+
+# Most birds can fly, but there are exceptions
+:FlyingAnimal[?X] :- :Bird[?X], NOT :FlightlessAnimal[?X].
+
+# penguins are birds, but no penguin can fly
+:Bird[?X] :- :Penguin[?X].
+:FlightlessAnimal[?X] :- :Penguin[?X].
+
+# here are some birds
+:Penguin[:chillyWilly].
+:Bird[:tweety].
+
+# likes is symmetric
+[?P1, :likes, ?P2] :- [ ?P2, :likes, ?P1 ].
+
+# assume bob likes every person unless we know otherwise
+[:bob, :likes, ?P] :- :Person[?P], NOT [:bob, :dislikes, ?P].
+
+# assume carl likes every person who does not dislike him
+[:carl, :likes, ?P] :- :Person[?P], NOT [?P, :dislikes, :carl].
+
+# here are some people
+:Person[:bob].
+:Person[:alice].
+:Person[:carl].
+:dislikes[:bob, :carl].
